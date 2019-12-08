@@ -25,9 +25,8 @@ xc = (v0.*cosd(theta).*(t)) + ((1./2).*(ax).*(t.^2));
 yc = (x + v0.*sind(theta).*(t)) + ((1./2).*(ay).*(t.^2));
 
 %plot values
-ax.XAxisLocation = 'origin';
 plot(xc,yc)
 grid on
 xlabel('Distance (m)')
 ylabel('Height (m)')
-title('Projectile Trajectory')      
+title('Projectile Trajectory')     
