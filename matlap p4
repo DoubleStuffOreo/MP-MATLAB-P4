@@ -1,0 +1,33 @@
+%input values
+x = input('Enter the initial position in meters: ');
+v0 = input('Enter the initial velocity in m/s: ');
+theta = input('Enter the angle theta with respect to the x-axis in degrees: ');
+ax = input('Enter the x-component of the acceleration in m/s^2: ');
+ay = input('Enter the y-component of the acceleration in m/s^2): ');
+
+%condition on acc y-comp 
+if ay >= 0
+    error('Error! The y-component must not be greater than or equal to zero.')
+end
+
+%solving for v0x and v0y
+v0x = v0 * cosd(theta);
+v0y = v0 * sind(theta);
+
+%solving for max time
+tmax = (sqrt((v0 *sind(theta))^2 - 2*ay*x) - v0 * sind(theta)) / ay;
+if tmax<=0
+    tmax = (-sqrt((v0 * sind(theta))^2 - 2 * ay * x) - v0 *sind(theta))/ ay;
+end
+
+t = 0:1/25:tmax;
+xc = (v0.*cosd(theta).*(t)) + ((1./2).*(ax).*(t.^2));
+yc = (x + v0.*sind(theta).*(t)) + ((1./2).*(ay).*(t.^2));
+
+%plot values
+ax.XAxisLocation = 'origin';
+plot(xc,yc)
+grid on
+xlabel('Distance (m)')
+ylabel('Height (m)')
+title('Projectile Trajectory')      
